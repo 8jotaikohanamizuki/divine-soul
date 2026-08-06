@@ -7,13 +7,4 @@ A-Frame を使った WebVR コンテンツ
 
 https://8jotaikohanamizuki.github.io/divine-soul/vr-taiko.html
 
-全画面を占領しちゃうから、WordPress のレイアウトが壊れるのでiframe で埋め込む
 
-WordPress では <iframe> で参照
-
-<iframe 
-  src="https://8jotaikohanamizuki.github.io/divine-soul/vr-taiko.html" 
-  style="width:100%; height:800px; border:none;"
-  allow="fullscreen; xr-spatial-tracking"
-  allowfullscreen>
-</iframe>
