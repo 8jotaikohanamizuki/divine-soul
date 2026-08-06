@@ -3,28 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Divine Soul</title>
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <title>VR石投げ踊り計画</title>
+  <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
   <style>
     body {
       margin: 0;
-      padding: 20px;
       background: #1a1a1a;
+      color: #ffffff;
       font-family: Arial, sans-serif;
     }
-    model-viewer {
-      width: 100%;
-      height: 600px;
+    h1 {
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      z-index: 999;
+      color: #333333; /* 背景に合わせて文字を濃い色に変更 */
     }
   </style>
 </head>
 <body>
-  <h1>Divine Soul 計画</h1>
-  <model-viewer
-    src="https://raw.githubusercontent.com/8jotaikohanamizuki/divine-soul/main/taikodrum3dmodel-v1.glb"
-    alt="Divine Soul"
-    auto-rotate
-    camera-controls>
-  </model-viewer>
+  
+
+  <a-scene>
+    <!-- 3Dモデルの読み込み -->
+    <a-assets>
+      <a-asset-item id="taiko" src="https://raw.githubusercontent.com/8jotaikohanamizuki/divine-soul/main/taikodrum3dmodel-v1.glb"></a-asset-item>
+    </a-assets>
+
+    <!-- ★追加1: 全体を均一に明るくする環境光（intensityで明るさを調整） -->
+    <a-light type="ambient" color="#ffffff" intensity="0.8"></a-light>
+
+    <!-- ★追加2: 斜め上からの光（太鼓の立体感を強調するライト） -->
+    <a-light type="directional" color="#ffffff" intensity="0.6" position="-1 2 1"></a-light>
+
+    <!-- 太鼓の配置（手前80cm、1.5倍の大きさ） -->
+    <a-entity gltf-model="#taiko" position="0 0.8 -0.8" scale="1.5 1.5 1.5"></a-entity>
+
+    <!-- ★変更: 背景を「明るいグレー（#e0e0e0）」または「白（#ffffff）」にする -->
+    <a-sky color="#e0e0e0"></a-sky>
+  </a-scene>
 </body>
 </html>
