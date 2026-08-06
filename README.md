@@ -12,4 +12,4 @@ https://8jotaikohanamizuki.github.io/divine-soul/vr-taiko.html
 WordPress では <iframe> で参照
 
 html
-  <iframe src="https://8jotaikohanamizuki.github.io/vr-taiko/" style="width:100%; height:800px; border:none;"></iframe>
+  <iframe src="https://8jotaikohanamizuki.github.io/divine-soul/vr-taiko/" style="width:100%; height:800px; border:none;"></iframe>
