@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VR石投げ踊り計画</title>
-  <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+  <!-- A-Frameのバージョンを最新の安定版（1.5.0以降）にアップグレード -->
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
   <style>
     body {
       margin: 0;
@@ -22,14 +23,18 @@
   </style>
 </head>
 <body>
-  <!-- ここを修正 ↓↓↓ -->
-  <a-scene>
+  <!-- rendererに立体視の精度アップや陰影の最適化を追加 -->
+  <a-scene renderer="colorManagement: true; highRefreshRate: true;">
     <a-assets>
       <a-asset-item id="taiko" src="https://raw.githubusercontent.com/8jotaikohanamizuki/divine-soul/main/taikodrum3dmodel-v1.glb"></a-asset-item>
     </a-assets>
+    
     <a-light type="ambient" color="#ffffff" intensity="0.8"></a-light>
     <a-light type="directional" color="#ffffff" intensity="0.6" position="-1 2 1"></a-light>
-    <a-entity gltf-model="#taiko" position="0 0.8 -0.8" scale="1.5 1.5 1.5"></a-entity>
+    
+    <!-- 3Dモデルを配置（VRでのカリング・クリッピング対策として少し位置を調整） -->
+    <a-entity gltf-model="#taiko" position="0 0.8 -1.2" scale="1.5 1.5 1.5"></a-entity>
+    
     <a-sky color="#e0e0e0"></a-sky>
   </a-scene>
 </body>
