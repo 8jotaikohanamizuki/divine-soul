@@ -3,48 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A-Frame AR サンプル</title>
-  <!-- A-Frame の読み込み (v1.4.2以降を推奨) -->
-  <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+  <title>ARサンプル</title>
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
   <style>
     body {
       margin: 0;
       overflow: hidden;
     }
+    /* A-Frameの描画キャンバスを透明化 */
+    .a-canvas {
+      background-color: transparent !important;
+    }
   </style>
 </head>
 <body>
 
-  <!-- WebXR ARモードを有効化したシーン -->
+  <!-- webxrでARモードを有効化し、背景透過（xr-mode-ui）を設定 -->
   <a-scene 
-    webxr="optionalFeatures: hit-test, local-floor;" 
-    ar-mode-ui="enabled: true" 
+    webxr="optionalFeatures: hit-test, local-floor;"
+    ar-mode-ui="enabled: true"
+    vr-mode-ui="enabled: false"
     renderer="colorManagement: true;">
 
-    <!-- アセットの事前読み込み -->
     <a-assets>
-      <a-asset-item 
-        id="taiko-model" 
-        src="https://raw.githubusercontent.com/8jotaikohanamizuki/divine-soul/main/taikodrum3dmodel-v1.glb">
-      </a-asset-item>
+      <a-asset-item id="taiko" src="https://raw.githubusercontent.com/8jotaikohanamizuki/divine-soul/main/taikodrum3dmodel-v1.glb"></a-asset-item>
     </a-assets>
-
-    <!-- ライティング -->
-    <a-light type="ambient" intensity="0.8"></a-light>
-    <a-light type="directional" position="1 2 1" intensity="1" cast-shadow="true"></a-light>
-
-    <!-- 3Dモデルの配置 (初期位置・スケールの調整) -->
-    <a-entity 
-      gltf-model="#taiko-model" 
-      position="0 0 -1.5" 
-      scale="0.5 0.5 0.5"
-      rotation="0 45 0">
-    </a-entity>
-
-    <!-- カメラ -->
-    <a-camera position="0 1.6 0"></a-camera>
+    
+    <a-light type="ambient" color="#ffffff" intensity="0.8"></a-light>
+    <a-light type="directional" color="#ffffff" intensity="0.6" position="-1 2 1"></a-light>
+    
+    <a-entity gltf-model="#taiko" position="0 0.8 -1.2" scale="1.5 1.5 1.5"></a-entity>
+    
+    <!-- ❌ <a-sky> は削除（背景を覆ってしまうため） -->
 
   </a-scene>
-
 </body>
 </html>
