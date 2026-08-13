@@ -3,39 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ARサンプル</title>
+  <title>VR石投げ踊り計画 - ARモード</title>
+  <!-- A-Frame 1.5.0 -->
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <!-- AR.js（A-Frame用カメラARライブラリ）を追加 -->
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
   <style>
     body {
       margin: 0;
       overflow: hidden;
     }
-    /* A-Frameの描画キャンバスを透明化 */
-    .a-canvas {
-      background-color: transparent !important;
-    }
   </style>
 </head>
-<body>
+<body style="margin: 0px; overflow: hidden;">
 
-  <!-- webxrでARモードを有効化し、背景透過（xr-mode-ui）を設定 -->
-  <a-scene 
-    webxr="optionalFeatures: hit-test, local-floor;"
-    ar-mode-ui="enabled: true"
-    vr-mode-ui="enabled: false"
-    renderer="colorManagement: true;">
+  <!-- embedded arjs でカメラを背景として直接起動 -->
+  <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
 
     <a-assets>
       <a-asset-item id="taiko" src="https://raw.githubusercontent.com/8jotaikohanamizuki/divine-soul/main/taikodrum3dmodel-v1.glb"></a-asset-item>
     </a-assets>
-    
-    <a-light type="ambient" color="#ffffff" intensity="0.8"></a-light>
-    <a-light type="directional" color="#ffffff" intensity="0.6" position="-1 2 1"></a-light>
-    
-    <a-entity gltf-model="#taiko" position="0 0.8 -1.2" scale="1.5 1.5 1.5"></a-entity>
-    
-    <!-- ❌ <a-sky> は削除（背景を覆ってしまうため） -->
+
+    <a-light type="ambient" color="#ffffff" intensity="1"></a-light>
+    <a-light type="directional" color="#ffffff" intensity="0.8" position="-1 2 1"></a-light>
+
+    <!-- 画面中央の目の前に太鼓を配置 -->
+    <a-entity 
+      gltf-model="#taiko" 
+      position="0 0 -2" 
+      scale="1 1 1"
+      rotation="0 0 0">
+    </a-entity>
+
+    <!-- カメラ -->
+    <a-entity camera></a-entity>
 
   </a-scene>
+
 </body>
 </html>
